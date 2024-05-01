@@ -10,4 +10,8 @@ import java.util.UUID;
 public interface StudentRepository extends JpaRepository<Student, UUID> {
 
     Page<Student> findAllByActiveTrue(Pageable pageable);
+
+    boolean existsByCpf(String cpf);
+
+    boolean existsByEmail(String email);
 }

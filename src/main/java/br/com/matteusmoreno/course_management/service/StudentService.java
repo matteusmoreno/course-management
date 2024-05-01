@@ -1,6 +1,7 @@
 package br.com.matteusmoreno.course_management.service;
 
 import br.com.matteusmoreno.course_management.domain.Student;
+import br.com.matteusmoreno.course_management.exception.DuplicateEntryException;
 import br.com.matteusmoreno.course_management.repository.StudentRepository;
 import br.com.matteusmoreno.course_management.request.CreateStudentRequest;
 import br.com.matteusmoreno.course_management.request.UpdateStudentRequest;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -28,6 +30,15 @@ public class StudentService {
 
     //CREATE STUDENT
     public Student create(CreateStudentRequest request) {
+
+        if (studentRepository.existsByCpf(request.cpf())) {
+            throw new DuplicateEntryException("CPF already in use");
+        }
+
+        if (studentRepository.existsByEmail(request.email())) {
+            throw new DuplicateEntryException("Email already in use");
+        }
+
         Student student = new Student();
         studentUtils.setAddressAttributes(request.cep(), student);
         BeanUtils.copyProperties(request, student);

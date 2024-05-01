@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.UUID;
 
 @RestController
