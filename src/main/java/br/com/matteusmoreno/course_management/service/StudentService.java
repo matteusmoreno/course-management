@@ -5,13 +5,11 @@ import br.com.matteusmoreno.course_management.repository.StudentRepository;
 import br.com.matteusmoreno.course_management.request.CreateStudentRequest;
 import br.com.matteusmoreno.course_management.request.UpdateStudentRequest;
 import br.com.matteusmoreno.course_management.response.ListStudentResponse;
-import br.com.matteusmoreno.course_management.response.StudentDetailsResponse;
 import br.com.matteusmoreno.course_management.utils.StudentUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

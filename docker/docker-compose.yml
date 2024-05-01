@@ -1,0 +1,19 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306" # Mapeia a porta 3306 do contêiner para a porta 3307 do host
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
